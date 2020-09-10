@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "gametda.h"
 
 void Read_Game(game *g, char *nom) {
@@ -87,7 +88,7 @@ void Write_Game(game *g) {
 	int i;
 	for (i = 0; i < (g -> n_cat); i++) {
 		fprintf(fp, "%s", g -> categs[i]);
-		if (i != (g -> n_cat) - 1) fprintf(fp, ",");
+		if (i != (g -> n_cat) - 1) fprintf(fp, ", ");
 	}
 	fprintf(fp, "\n");
 
@@ -107,5 +108,59 @@ int Cmp_Game(game *g1, game *g2) {
 }
 
 void Generator() {
+	int i, j, cats, select, cant = 20;
+	cant += (rand() % 10);  //[20, 30] cantidad de juegos
+	char categs[5][20] = {"Terror", "Multiplayer", "Plataforma", "RPG", "MOBA"};
+	//{0 = Terror, 1 = Multiplayer, 2 = Plataforma, 3 = RPG, 4 = MOBA}
+	FILE *fp;
+
+	char nom[20];
+	char emp[20];
+	char res[150];
+	char buff[4];
+	char route[100];
+
+	int flag = 0; //Flag juegos con mas de una categoria
+	int fs[5] = {0, 0, 0, 0, 0}; //Flags juegos en categoria
 	
+	for (i = 0; i < cant; i++) {
+		strcpy(nom, "Juego_");
+		strcpy(emp, "Empresa_");
+		strcpy(res, "Descripcion_");
+		strcpy(route, "Juegos/");
+		//itoa(i, buff, 10);
+		sprintf(buff, "%i", i);
+
+		strcat(nom, buff);  //Nombre del juego
+		strcat(emp, buff);  //Empresa autora
+		strcat(res, buff);  //Resumen
+
+		strcat(route, nom);
+		strcat(route, ".txt"); //Juegos/Nombre.txt
+
+		fp = fopen(route, "w");
+
+		fprintf(fp, "%s\n", nom); //Escritura del nombre
+
+		cats = (rand() % 5) + 1;
+		if (cats >= 2) flag++;
+
+		//Escritura de categorias
+		select = rand() % 5;
+		for (j = 0; j < (cats - 1); j++) {
+			fprintf(fp, "%s", categs[select]);
+			fs[select]++;
+			select = (select + 1) % 5;
+			fprintf(fp, ", ");
+		}
+		fprintf(fp, "%s\n", categs[select]);
+
+		fprintf(fp, "%s\n", emp); //Escritura de la empresa
+
+		fprintf(fp, "%s\n", res); //Escritura del resumen
+
+		fclose(fp);
+
+		if (i == (cant - 1)) if (flag < 5 || fs[0] < 2 || fs[1] < 2 || fs[2] < 2 || fs[3] < 2 || fs[4] < 2) cant++;
+	}
 }
