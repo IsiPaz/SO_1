@@ -69,15 +69,15 @@ void Write_Game(game *g) {
 	FILE *fp;
 	char temp1[25]; //Nombre
 	char temp2[25]; //Categoria
-	char temp3[50]; //Fin
+	char temp3[100] = "Juegos/"; //Fin
 
 	strcpy(temp1, g -> nombre);
 	strcat(temp1, ".txt");          //Nombre.txt
 	strcpy(temp2, g -> categs[0]);  //Categoria
 
-	strcpy(temp3, temp2); //Fin = Categoria
-	strcat(temp3, "\\");  
-	strcat(temp3, temp1); //Fin = Categoria\Nombre.txt
+	strcat(temp3, temp2); //Fin = Juegos/Categoria
+	strcat(temp3, "/");  
+	strcat(temp3, temp1); //Fin = Juegos/Categoria/Nombre.txt
 
 	fp = fopen(temp3, "w");
 	//Nombre
@@ -104,4 +104,8 @@ int Cmp_Game(game *g1, game *g2) {
 	if (g1 -> n_cat == g2 -> n_cat) return 0;
 	if (g1 -> n_cat > g2 -> n_cat) return -1;
 	if (g1 -> n_cat < g2 -> n_cat) return 1;
+}
+
+void Generator() {
+	
 }

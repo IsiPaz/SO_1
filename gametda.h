@@ -39,5 +39,6 @@ typedef struct Game {
 void Read_Game(game *, char *);
 void Write_Game(game *);
 int Cmp_Game(game *, game *);
+void Generator();
 
 #endif
