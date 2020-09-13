@@ -15,7 +15,6 @@ int Navegar(int flag){
     //lo que indica que no hay más entradas disponibles en el directorio.
     struct dirent *entry;  
     int files = 0;
-
     folder = opendir("Juegos");
 
     if(folder == NULL) {
@@ -24,39 +23,45 @@ int Navegar(int flag){
     }
 
     if ( flag == 1){
-        printf("Creando carpetas de categorias");
-        char categorias[5];
+        printf("Creando carpetas de categorias\n");
+        char categorias[5][20];
         int contador_cat = 0;
-        char temp1[25]; //Nombre
-	    //char temp2[25]; //Categoria
-	    char temp2[100] = "Juegos/"; //Fin
+
+
 
         while((entry = readdir(folder))) {
             if (!strcmp(entry->d_name, ".") || !strcmp(entry->d_name, "..")){
                 continue;	
             }
             else {
-
+                char temp1[25]; //Nombre
+	            char temp2[100] = "Juegos/"; //Fin
+                FILE *fp;
+                char buff1[100];
                 char buff[160];
                 int a,e; //contadores
+                int f = 0; //flag
 
                 strcpy(temp1, entry->d_name);     //Nombre.txt
-                strcat(temp2,temp1)               //Peliculas/Nombre.txt
+                strcat(temp2,temp1);              //Peliculas/Nombre.txt
 
                 fp = fopen(temp2, "r");           //Abro cada pelicula
 
                 //Nombre
-	            fscanf(fp, "%s\n", buff);
+	            fscanf(fp, "%s\n", buff1);
 
                 //Categorias
                 char c = fgetc(fp);
                 buff[0] = '\n';
-                g -> n_cat = 0;
+                //g -> n_cat = 0;
                 int i = 0;
-                while (c != '\n') {
+
+                // BENJA SI VES ESTO, LO ESTARE ARREGLANDO <3 
+                while (c != '\n') {   // el buff me anota letra por letra y no cadenas de string, ademas tiene un problema con el \0 al inicio de cada cadena
                     if (c != ',') {
                         if (c != ' ') {
                             buff[i] = c;
+                            printf("buff[i]: %s\n", &buff[i]);
                             i++;
                         }
                     }
@@ -65,7 +70,7 @@ int Navegar(int flag){
                         i = 0;
                         //strcpy(g -> categs[g -> n_cat], buff);
                         //(g -> n_cat)++;
-                        buff[0] = '\0';
+                        buff[0] = '\0';   // -> esto me lo reseteaaa asique arreglar
                     }
                     c = fgetc(fp);
                     if (c == '\n') {
@@ -74,16 +79,39 @@ int Navegar(int flag){
                         //(g -> n_cat)++;
                     }
                 }
+
                 while(contador_cat<5){
                     if (sizeof(categorias)==0){ // si no hay ninguna categoria en el arreglo de categorias
                         for (a = 0; a < sizeof(buff); a++){  //si es que buff guarda todas las categorias?? preguntar a benja como funciona su lector de categorias
-                        categorias[contador_cat] = buff[0];
-                        contador_cat++;           
+                            categorias[contador_cat] = buff[a];
+                            printf("categoria añadida%s\n",&categorias[contador_cat]);
+                            contador_cat++;  
+                                     
                         }
                     }
                     
-                    else if (){  // aqui tendria que revisar si la categoria del arreglo buff se encuentra ya en el arreglo de categorias
+                    else {  // aqui tendria que revisar si la categoria del arreglo buff se encuentra ya en el arreglo de categorias
+                        for (a = 0; a < sizeof(buff); a++){  //si es que buff guarda todas las categorias?? preguntar a benja como funciona su lector de categorias
+                            if (contador_cat<5){  // esto me comprueba que aun no estan llenas las 5 categorias
+                                for (e = 0; e<contador_cat-1;e++){
+                                    if(buff[a] == categorias[e]){
+                                        flag = 1;  //ya esta en categorias
+                                        break;
+                                    }
+                                }
 
+                                if (f == 0){ //no esta, entonces lo agregare a categorias
+                                    categorias[contador_cat] = buff[a];
+                                    printf("categoria añadida%s\n",&categorias[contador_cat]);
+                                    contador_cat++;
+                                }
+                            }
+
+                            else{
+                                break;
+                            }
+                                          
+                        }
                     }
                 }
 
@@ -93,8 +121,10 @@ int Navegar(int flag){
             }
 
         }
-
-        // aqui recorro el arreglo de categorias y creo las carpetas de cada una
+        int u;
+        for (u = 0; u<5; u++){ // aqui recorro el arreglo de categorias y creo las carpetas de cada una, por ahora estoy imprimiendo no mas para ver si funciona
+            printf("categorias:%s\n", &categorias[u]);
+        }
 
     }
     
