@@ -105,6 +105,7 @@ int Cmp_Game(game *g1, game *g2) {
 	if (g1 -> n_cat == g2 -> n_cat) return 0;
 	if (g1 -> n_cat > g2 -> n_cat) return -1;
 	if (g1 -> n_cat < g2 -> n_cat) return 1;
+	return 2;
 }
 
 void Generator() {
@@ -164,3 +165,9 @@ void Generator() {
 		if (i == (cant - 1)) if (flag < 5 || fs[0] < 2 || fs[1] < 2 || fs[2] < 2 || fs[3] < 2 || fs[4] < 2) cant++;
 	}
 }
+
+
+
+//recorrer directorios -> crear funcion
+//agregar struct de juego en lista con todos los juegos existententes con el tda read
+//
