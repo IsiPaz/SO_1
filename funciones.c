@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "gametda.c"
 
 
@@ -34,11 +36,15 @@ int Navegar(int flag){
                 continue;	
             }
             else {
-                char temp1[25]; //Nombre
-	            char temp2[100] = "Juegos/"; //Fin
                 FILE *fp;
-                char buff1[100];
-                char buff[160];
+                char temp1[25];                   //Nombre
+	            char temp2[100] = "Juegos/";      //Fin
+
+                char buff1[100];                  //nombre de cada juego
+                char buff[160];                   //string del txt con las categorias 
+
+                char *cat_juegox[5];              //categorias de cada juego revisado
+
                 int a,e; //contadores
                 int f = 0; //flag
 
@@ -49,83 +55,83 @@ int Navegar(int flag){
 
                 //Nombre
 	            fscanf(fp, "%s\n", buff1);
+                //printf( "nombre: %s\n", buff1 );           //borrar
 
-                //Categorias
-                char c = fgetc(fp);
-                buff[0] = '\n';
-                //g -> n_cat = 0;
-                int i = 0;
-
-                // BENJA SI VES ESTO, LO ESTARE ARREGLANDO <3 
-                while (c != '\n') {   // el buff me anota letra por letra y no cadenas de string, ademas tiene un problema con el \0 al inicio de cada cadena
-                    if (c != ',') {
-                        if (c != ' ') {
-                            buff[i] = c;
-                            printf("buff[i]: %s\n", &buff[i]);
-                            i++;
-                        }
-                    }
-                    else {
-                        buff[i] = '\0';
-                        i = 0;
-                        //strcpy(g -> categs[g -> n_cat], buff);
-                        //(g -> n_cat)++;
-                        buff[0] = '\0';   // -> esto me lo reseteaaa asique arreglar
-                    }
-                    c = fgetc(fp);
-                    if (c == '\n') {
-                        buff[i] = '\0';
-                        //strcpy(g -> categs[g -> n_cat], buff);
-                        //(g -> n_cat)++;
-                    }
-                }
-
-                while(contador_cat<5){
-                    if (sizeof(categorias)==0){ // si no hay ninguna categoria en el arreglo de categorias
-                        for (a = 0; a < sizeof(buff); a++){  //si es que buff guarda todas las categorias?? preguntar a benja como funciona su lector de categorias
-                            categorias[contador_cat] = buff[a];
-                            printf("categoria añadida%s\n",&categorias[contador_cat]);
-                            contador_cat++;  
-                                     
-                        }
-                    }
+                if( fgets (buff, 160, fp)!=NULL ) {
+                    //printf("categorias: %s\n", buff);      //borrar
                     
-                    else {  // aqui tendria que revisar si la categoria del arreglo buff se encuentra ya en el arreglo de categorias
-                        for (a = 0; a < sizeof(buff); a++){  //si es que buff guarda todas las categorias?? preguntar a benja como funciona su lector de categorias
-                            if (contador_cat<5){  // esto me comprueba que aun no estan llenas las 5 categorias
-                                for (e = 0; e<contador_cat-1;e++){
-                                    if(buff[a] == categorias[e]){
-                                        flag = 1;  //ya esta en categorias
-                                        break;
+                    int cont = 0;
+                    char delimitador[] = ", \n";
+                    char *token = strtok(buff, delimitador);
+                    if(token != NULL){
+                        int x = 0;
+                        while(token != NULL){
+                            // Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+                            //printf("Token: %s\n", token);
+                            cat_juegox[x++] = token;
+                            cont = cont + 1;
+                            token = strtok(NULL, delimitador);
+
+                        }
+                    }
+
+/*                     int a;
+                    printf("contador:%d\n", cont);
+                    for (a = 0; a < cont; ++a){ 
+                        printf("%s\n", cat_juegox[a]);
+                    } */
+
+                    if(contador_cat <5){
+                    
+                        if (sizeof(categorias) != 0){  // aqui tendria que revisar si la categoria del arreglo buff se encuentra ya en el arreglo de categorias
+                            for (a = 0; a < cont; a++){  
+                                if (contador_cat<5){  // esto me comprueba que aun no estan llenas las 5 categorias
+                                    for (e = 0; e<contador_cat; e++){
+                                        if(strcmp(cat_juegox[a], categorias[e]) == 0 ){  
+                                            f = 1;  //ya esta en categorias
+                                            break;
+                                        }
+                                    }
+
+                                    if (f == 0){ //no esta, entonces lo agregare a categorias
+                                        strcpy(categorias[contador_cat],cat_juegox[a]);
+                                        printf("categoria añadida %s\n", categorias[contador_cat]);
+                                        
+                                        contador_cat++;
                                     }
                                 }
 
-                                if (f == 0){ //no esta, entonces lo agregare a categorias
-                                    categorias[contador_cat] = buff[a];
-                                    printf("categoria añadida%s\n",&categorias[contador_cat]);
-                                    contador_cat++;
+                                else{
+                                    break;
                                 }
+                                            
                             }
+                        }
 
-                            else{
-                                break;
+                        else if (sizeof(categorias) == 0){       // si no hay ninguna categoria en el arreglo de categorias
+                            for (a = 0; a < cont; a++){  
+                                strcpy(categorias[contador_cat],cat_juegox[a]);
+                                printf("categoria añadida: %s\n",categorias[contador_cat]);
+                                contador_cat++;  
+                                        
                             }
-                                          
                         }
                     }
+
                 }
 
-                //printf("File %d: %s\n", files, entry->d_name);
-
-                fclose(fp);  //deberia preguntar que pasa con el puntero de lectura de cada archivo.
+                fclose(fp); 
             }
 
         }
         int u;
-        for (u = 0; u<5; u++){ // aqui recorro el arreglo de categorias y creo las carpetas de cada una, por ahora estoy imprimiendo no mas para ver si funciona
-            printf("categorias:%s\n", &categorias[u]);
+        char ruta[150];
+        for (u = 0; u<5; u++){           // Creo cada carpeta
+            //printf("categorias:%s\n", categorias[u]);
+            strcpy(ruta,"Juegos/");
+            strcat(ruta,categorias[u]);
+            mkdir(ruta,0777);
         }
-
     }
     
     else if ( flag == 2){
