@@ -28,6 +28,8 @@ Metodos:
 
 	at: Retorna el struct game de la posicion dada.
 
+	sort: Recibe una lista y retorna esa misma lista ordenada ascedentemente.
+
 Struct Nodo:
 Contiene el struct game y un punto al nodo siguiente.
 */
@@ -52,5 +54,6 @@ void append(lista *, game *);
 void remove_(lista *, int);
 int length(lista *);
 game *at(lista *, int);
+lista *sort(lista *);
 
 #endif

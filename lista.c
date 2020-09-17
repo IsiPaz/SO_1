@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lista.h"
 #include "gametda.h"
 
@@ -102,4 +103,30 @@ game *at(lista *a, int i) {
 	a -> actual = a -> head;
 	for (j = 0; j < i; j++) a -> actual = a -> actual -> next;
 	return a -> actual -> next -> info;
+}
+
+lista *sort(lista *a) {
+	lista *l = (lista *)malloc(sizeof(lista));
+	init(l);
+	int i, j = 5, k;
+	while (j > 0){
+		for (i = 0; i < length(a); i++) {
+			game *aux = at(a, i);
+			if ((aux -> n_cat) == j) {
+				game *temp = (game *)malloc(sizeof(game));
+				strcpy(temp -> nombre, aux -> nombre);
+				for (k = 0; k < aux -> n_cat; k++) strcpy(temp -> categs[k], aux -> categs[k]);
+				strcpy(temp -> empresa, aux -> empresa);
+				strcpy(temp -> resumen, aux -> resumen);
+				temp -> n_cat = aux -> n_cat;
+				append(l, temp);
+				remove_(a, i);
+				break;
+			}
+		}
+		j--;
+	}
+	destroy(a);
+	free(a);
+	return l;
 }
