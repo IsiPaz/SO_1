@@ -8,6 +8,77 @@
 
 
 
+void Ordenar_juegos(){
+
+
+    DIR *folder;
+
+    struct dirent *entry;  
+    folder = opendir("Juegos");
+
+    while((entry = readdir(folder))) {
+        if (!strcmp(entry->d_name, ".") || !strcmp(entry->d_name, "..")){
+            continue;	
+        }
+        else {
+            FILE *fp;
+            char temp1[25];                   //Nombre
+            char temp2[100] = "Juegos/";      //Fin
+
+            char buff1[100];                  //nombre de cada juego
+            char buff[160];                   //string del txt con las categorias 
+            char path[160];                   //ruta final de cada juego
+            char *cat_juegox[5];              //categorias de cada juego revisado
+
+            //int a; //contadores
+
+            strcpy(temp1, entry->d_name);     //Nombre.txt
+            strcat(temp2,temp1);              //Juegos/Nombre.txt
+
+            fp = fopen(temp2, "r");           //Abro cada juego
+
+            //Nombre
+            fscanf(fp, "%s\n", buff1);
+            //printf( "nombre: %s\n", buff1 );           //borrar
+
+            if( fgets (buff, 160, fp)!=NULL ) {
+                //printf("categorias: %s\n", buff);      //borrar
+                
+                int cont = 0;
+                char delimitador[] = ", \n";
+                char *token = strtok(buff, delimitador);
+                if(token != NULL){
+                    int x = 0;
+                    while(token != NULL){
+                        // Sólo en la primera pasamos la cadena; en las siguientes pasamos NULL
+                        //printf("Token: %s\n", token);
+                        cat_juegox[x++] = token;
+                        cont = cont + 1;
+                        token = strtok(NULL, delimitador);
+
+                    }
+                }
+
+/*                 printf("contador:%d\n", cont);
+                for (a = 0; a < cont; ++a){ 
+                    printf("%s\n", cat_juegox[a]);
+                } */
+
+                strcpy(path,"Juegos/");        //   Juegos/
+                strcat(path,cat_juegox[0]);    //   Juegos/categoria
+                strcat(path,"/");              //   Juegos/categoria/
+                strcat(path,temp1);            //   Juegos/categoria/name.txt
+                rename(temp2,path);
+
+            }
+
+            fclose(fp); 
+        }
+    }
+}
+
+
+
 int Navegar(int flag){
     DIR *folder;
     //La variable de estructura dirent es un puntero que contiene 
@@ -58,7 +129,7 @@ int Navegar(int flag){
                 //printf( "nombre: %s\n", buff1 );           //borrar
 
                 if( fgets (buff, 160, fp)!=NULL ) {
-                    //printf("categorias: %s\n", buff);      //borrar
+                    printf("categorias: %s\n", buff);      //borrar
                     
                     int cont = 0;
                     char delimitador[] = ", \n";
@@ -96,7 +167,6 @@ int Navegar(int flag){
                                     if (f == 0){ //no esta, entonces lo agregare a categorias
                                         strcpy(categorias[contador_cat],cat_juegox[a]);
                                         printf("categoria añadida %s\n", categorias[contador_cat]);
-                                        
                                         contador_cat++;
                                     }
                                 }
@@ -112,8 +182,7 @@ int Navegar(int flag){
                             for (a = 0; a < cont; a++){  
                                 strcpy(categorias[contador_cat],cat_juegox[a]);
                                 printf("categoria añadida: %s\n",categorias[contador_cat]);
-                                contador_cat++;  
-                                        
+                                contador_cat++;           
                             }
                         }
                     }
@@ -132,6 +201,8 @@ int Navegar(int flag){
             strcat(ruta,categorias[u]);
             mkdir(ruta,0777);
         }
+
+        Ordenar_juegos();
     }
     
     else if ( flag == 2){
