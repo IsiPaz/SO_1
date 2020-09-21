@@ -1,4 +1,4 @@
 Juego_9
-Multiplayer, Plataforma, RPG, MOBA, Terror
+Multiplayer, Plataforma
 Empresa_9
 Descripcion_9

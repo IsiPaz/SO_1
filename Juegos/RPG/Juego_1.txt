@@ -1,4 +1,4 @@
 Juego_1
-RPG, MOBA, Terror
+RPG
 Empresa_1
 Descripcion_1

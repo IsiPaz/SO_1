@@ -1,4 +1,4 @@
 Juego_4
-MOBA, Terror
+Plataforma, RPG
 Empresa_4
 Descripcion_4

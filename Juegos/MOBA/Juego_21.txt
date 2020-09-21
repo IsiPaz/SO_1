@@ -1,4 +1,4 @@
-Juego_8
+Juego_21
 MOBA, Terror, Multiplayer, Plataforma, RPG
-Empresa_8
-Descripcion_8
+Empresa_21
+Descripcion_21

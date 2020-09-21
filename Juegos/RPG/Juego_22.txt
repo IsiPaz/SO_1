@@ -1,4 +1,4 @@
 Juego_22
-Plataforma, RPG, MOBA
+RPG, MOBA, Terror
 Empresa_22
 Descripcion_22

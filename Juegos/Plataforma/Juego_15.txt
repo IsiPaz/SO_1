@@ -1,4 +1,4 @@
 Juego_15
-RPG, MOBA, Terror
+Plataforma, RPG, MOBA
 Empresa_15
 Descripcion_15

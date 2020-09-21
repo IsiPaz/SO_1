@@ -1,4 +1,4 @@
 Juego_0
-Plataforma, RPG, MOBA
+Plataforma, RPG
 Empresa_0
 Descripcion_0

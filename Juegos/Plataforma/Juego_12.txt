@@ -1,4 +1,4 @@
 Juego_12
-Plataforma, RPG, MOBA, Terror, Multiplayer
+Plataforma
 Empresa_12
 Descripcion_12

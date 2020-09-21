@@ -1,4 +1,4 @@
 Juego_2
-MOBA
+Multiplayer
 Empresa_2
 Descripcion_2

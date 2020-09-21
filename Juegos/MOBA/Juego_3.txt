@@ -1,4 +1,4 @@
 Juego_3
-RPG, MOBA
+MOBA, Terror, Multiplayer
 Empresa_3
 Descripcion_3

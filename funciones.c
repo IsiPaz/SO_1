@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include "gametda.c"
 
 
@@ -15,6 +16,7 @@ void Ordenar_juegos(){
 
     struct dirent *entry;  
     folder = opendir("Juegos");
+    char mov[300];
 
     while((entry = readdir(folder))) {
         if (!strcmp(entry->d_name, ".") || !strcmp(entry->d_name, "..")){
@@ -75,11 +77,15 @@ void Ordenar_juegos(){
             fclose(fp); 
         }
     }
+    closedir(folder);
+    strcpy(mov,"Juegos/");
+    chdir(mov);
+    
 }
 
 
 
-int Navegar(int flag){
+int Navegar(int flag, char* ruta){
     DIR *folder;
     //La variable de estructura dirent es un puntero que contiene 
     //información sobre una entrada específica leída desde un directorio, 
@@ -87,8 +93,8 @@ int Navegar(int flag){
     //Esta función se llama repetidamente hasta que se devuelve NULL, 
     //lo que indica que no hay más entradas disponibles en el directorio.
     struct dirent *entry;  
-    int files = 0;
-    folder = opendir("Juegos");
+
+    folder = opendir(ruta);
 
     if(folder == NULL) {
         printf("No es posible abrir el directorio");
@@ -206,13 +212,16 @@ int Navegar(int flag){
     }
     
     else if ( flag == 2){
+        int files = 0;
         while((entry = readdir(folder))) {
-            files++;
+            
             if (!strcmp(entry->d_name, ".") || !strcmp(entry->d_name, "..")){
                 continue;	
             }
             else {
-                printf("File %d: %s\n", files, entry->d_name);
+                files  = files + 1;
+                //printf("- %d: %s\n", files, entry->d_name);
+                printf("\n   %d- %s \n", files, entry->d_name);
             }
 
         }
@@ -221,4 +230,50 @@ int Navegar(int flag){
     closedir(folder);
 
     return(0);
+}
+
+
+int Abrir_carpeta(char* nombre){
+    
+    int files = 0;
+    char path_actual[200];
+    char path_actual1[200];
+    DIR *folder;
+    struct dirent *entry; 
+
+    folder = opendir(nombre); 
+    
+    if(folder == NULL) {
+        printf("No es posible abrir el directorio, intentelo nuevamente\n");
+        return(1);
+    }
+
+    else{
+        getcwd(path_actual,sizeof(path_actual));   
+        strcat(path_actual,"/");
+        strcat(path_actual, nombre);//   Juegos/categoria
+        chdir(path_actual);
+        getcwd(path_actual1,sizeof(path_actual1)); 
+        printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        printf("\n   Ruta actual -> %s \n",path_actual1);
+        printf("\n");
+
+        while((entry = readdir(folder))) {
+            
+            if (!strcmp(entry->d_name, ".") || !strcmp(entry->d_name, "..")){
+                continue;	
+            }
+            else {
+                files  = files + 1;
+                //printf("- %d: %s\n", files, entry->d_name);
+                printf("\n   %d- %s \n", files, entry->d_name);
+            }
+
+        }
+        printf("\n   Escriba el nombre del fichero que desea explorar (juego.txt)\n");
+        printf("\n   Si desea regresar escriba 'Back' \n");
+        printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        closedir(folder);
+        return 0;
+    }
 }

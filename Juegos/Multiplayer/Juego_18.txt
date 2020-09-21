@@ -1,4 +1,4 @@
 Juego_18
-RPG
+Multiplayer, Plataforma
 Empresa_18
 Descripcion_18

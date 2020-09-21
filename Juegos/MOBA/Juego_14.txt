@@ -1,4 +1,4 @@
 Juego_14
-Plataforma
+MOBA
 Empresa_14
 Descripcion_14

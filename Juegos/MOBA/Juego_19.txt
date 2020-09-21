@@ -1,4 +1,4 @@
 Juego_19
-RPG, MOBA, Terror, Multiplayer
+MOBA, Terror, Multiplayer
 Empresa_19
 Descripcion_19
