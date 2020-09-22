@@ -245,7 +245,7 @@ int Abrir_carpeta(char* nombre){
     
     if(folder == NULL) {
         printf("No es posible abrir el directorio, intentelo nuevamente\n");
-        return(1);
+        return 1;
     }
 
     else{
@@ -255,7 +255,8 @@ int Abrir_carpeta(char* nombre){
         chdir(path_actual);
         getcwd(path_actual1,sizeof(path_actual1)); 
         printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        printf("\n   Ruta actual -> %s \n",path_actual1);
+        printf("\n   Ruta actual -> \n");
+        printf("\n   %s \n",path_actual1);
         printf("\n");
 
         while((entry = readdir(folder))) {
@@ -270,10 +271,55 @@ int Abrir_carpeta(char* nombre){
             }
 
         }
+        printf("\n");
         printf("\n   Escriba el nombre del fichero que desea explorar (juego.txt)\n");
         printf("\n   Si desea regresar escriba 'Back' \n");
         printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         closedir(folder);
         return 0;
     }
+}
+
+int Abrir_txt(char* name){
+
+    FILE *fp;
+    fp = fopen(name, "r");           //Abro cada pelicula
+
+    if(fp == NULL) {
+        printf("No es posible abrir el fichero, intentelo nuevamente\n");
+        return 1;
+    }
+
+    char buff1[100]; 
+    char buff[160]; 
+    char path_actual[200];
+
+    getcwd(path_actual,sizeof(path_actual));   
+    strcat(path_actual,"/");
+    strcat(path_actual, name);//   Juegos/categoria
+    chdir(path_actual);
+
+    //Nombre
+    fscanf(fp, "%s\n", buff1);
+    printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+    printf("\n   Ruta actual -> %s \n",path_actual);
+    printf("\n");
+    printf("\n   Nombre: %s\n", buff1);
+
+    if( fgets (buff, 160, fp)!=NULL ) {
+        printf("\n   Categorias: %s", buff);      
+    }
+
+    //Empresa
+    fscanf(fp, "%s\n", buff1);
+    printf("\n   Empresa: %s\n", buff1);
+
+    //Resumen
+    fscanf(fp, "%s\n", buff1);
+    printf("\n   Resumen: %s\n", buff1);
+    //printf("\n   Si desea volver escriba 'Back' \n");
+    printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+    printf("\n");
+    fclose(fp); 
+    return 0;
 }

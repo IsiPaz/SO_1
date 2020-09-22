@@ -8,6 +8,7 @@
 int main(){
 
     int a = 0;
+    int e = 0;
     int opcion;    
     char ruta[300];
     char folder[100];
@@ -40,7 +41,7 @@ int main(){
 
     a = 0;
     getcwd(ruta,sizeof(ruta));   //   Juegos/
-    while(a==0){	
+    while( a == 0 ){	
         printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         printf("\n   Menu \n");
         printf("\n   Ruta actual -> %s \n",ruta);
@@ -53,9 +54,14 @@ int main(){
         scanf("%s", folder);
 
         if (strcmp(folder,"Exit")!=0){
+
             if (Abrir_carpeta(folder) != 1){
                 printf("\n");
                 scanf("%s", fichero);
+
+                if (strcmp(fichero,"Back")!=0){
+                    Abrir_txt(fichero);
+                }
             }
         }
 
