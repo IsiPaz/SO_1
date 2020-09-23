@@ -8,15 +8,19 @@
 int main(){
 
     int a = 0;
-    int e = 0;
-    int opcion;    
+    int check = 0;
+    int opcion;  
+    int em;  
     char ruta[300];
-    char folder[100];
-    char fichero[100];
+    char accion[100];
+    char mov[100];
 
-    printf("\nBienvenido, ingrese el número de la opción que desea seleccionar \n");
-    printf("\n1. Crear juegos.");
-    printf("\n2. Explorar directorio.\n");
+    printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+    printf("\n   Bienvenido, ingrese el número de la opción que desea seleccionar \n");
+    printf("\n   1. Crear juegos.");
+    printf("\n   2. Explorar directorio.\n");
+    printf("\n");
+    printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
     printf("\n");
     scanf("%d", &opcion);
 
@@ -28,7 +32,18 @@ int main(){
         }
 
         else if (opcion == 2) { //Explorar el directorio con juegos
-            a = 1;
+            em = isDirectoryEmpty("Juegos");
+            if ( em == 0){  // si no esta vacio 
+                check = 1;
+                a = 1;
+            }
+
+            else{
+                //printf("entro\n");
+                check = 0;
+                a = 1;
+            }
+            
 
         }
 
@@ -37,32 +52,33 @@ int main(){
         }
     }
 
-    Navegar(1, "Juegos");
+    if (check == 0){
+        Navegar(1, "Juegos");
+    }
+
+    else{
+        strcpy(mov,"Juegos/");
+        chdir(mov);
+        
+    }
+    
 
     a = 0;
     getcwd(ruta,sizeof(ruta));   //   Juegos/
     while( a == 0 ){	
         printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        printf("\n   Menu \n");
+        printf("\n   Menu de navegación \n");
         printf("\n   Ruta actual -> %s \n",ruta);
         Navegar(2,ruta);
         printf("\n");
-        printf("\n   Escriba el nombre del directorio que desea explorar\n");
+        printf("\n   Escriba el nombre del directorio o archivo que desea explorar\n");
         printf("\n   Si desea salir escriba 'Exit' \n");
         printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         printf("\n");
-        scanf("%s", folder);
+        scanf("%s", accion);
 
-        if (strcmp(folder,"Exit")!=0){
-
-            if (Abrir_carpeta(folder) != 1){
-                printf("\n");
-                scanf("%s", fichero);
-
-                if (strcmp(fichero,"Back")!=0){
-                    Abrir_txt(fichero);
-                }
-            }
+        if (strcmp(accion,"Exit")!=0){
+            Explorar(accion);
         }
 
         else{
