@@ -121,7 +121,8 @@ lista *sort(lista *a) {
 				temp -> n_cat = aux -> n_cat;
 				append(l, temp);
 				remove_(a, i);
-				break;
+				//break;
+				i--;
 			}
 		}
 		j--;
