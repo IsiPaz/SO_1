@@ -5,8 +5,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include "gametda.c"
-
+#include "lista.h"
+#include "gametda.h"
 
 int isDirectoryEmpty(char *dirname) {
     int n = 0;
@@ -291,7 +291,6 @@ int Abrir_txt(char* name){
     fscanf(fp, "%s\n", buff1);
     printf("\n   Resumen: %s\n", buff1);
     printf("\n");
-    printf("\n   Presione cualquier tecla \n");
     printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
     printf("\n");
     fclose(fp); 
@@ -300,10 +299,16 @@ int Abrir_txt(char* name){
 
 void Explorar(char* ruta){ // MOBA     aqui llega una categoria
 
+    lista* juegos = (struct Lista*)malloc(sizeof(struct Lista));
+    game* aux;
+    init(juegos);
+
     DIR *folder;
     struct dirent *entry;  
     int files = 0;
     char accion[100];
+    char name[100];       
+    int a;            // Nombre del juego.txt
     //char movimiento[200];
 
     strcpy(accion,".");
@@ -318,8 +323,11 @@ void Explorar(char* ruta){ // MOBA     aqui llega una categoria
         strcat(path_actual, ruta);//   Juegos/categoria
         chdir(path_actual);
         if(folder == NULL) {
-            printf("No es posible abrir el directorio");
-            //return 1;
+            printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            printf("\n   No es posible abrir el directorio\n");
+            printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            printf("\n");
+            return ;
         }
 
         printf("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -332,16 +340,31 @@ void Explorar(char* ruta){ // MOBA     aqui llega una categoria
                 continue;	
             }
             else {
-                files  = files + 1;
+                
+                strcpy(name, entry->d_name);
+                game *temp = (game *)malloc(sizeof(game));
+                Read_Game(temp,name);
+                append(juegos,temp);
                 //printf("- %d: %s\n", files, entry->d_name);
-                printf("\n   %d- %s \n", files, entry->d_name);
+                //printf("\n   %d- %s \n", files, entry->d_name);
             }
+        }
+        juegos = sort(juegos);
+        for (a = length(juegos)-1; a>=0; a--){
+            files  = files + 1;
+            aux = at(juegos,a);
+            strcpy(name,aux->nombre);
+            strcat(name,".txt");
+            printf("\n   %d- %s \n", files, name);
         }
         printf("\n");
         printf("\n   Escriba el nombre del archivo que desea explorar\n");
         printf("\n   Si desea salir volver 'atras' \n");
         printf("\n");
         printf("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
+        destroy(juegos);
+        free(juegos);
 
         printf("\n");
         scanf("%s", accion);
@@ -351,9 +374,8 @@ void Explorar(char* ruta){ // MOBA     aqui llega una categoria
             chdir(".."); 
         }
 
-    }
+        closedir(folder);
 
+    }
     chdir(".."); 
-    closedir(folder); 
-    
 }

@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <unistd.h>
 #include "funciones.c" 
+#include "lista.h"
 
 int main(){
 
@@ -42,13 +43,12 @@ int main(){
                 //printf("entro\n");
                 check = 0;
                 a = 1;
-            }
-            
-
+            }   
         }
 
         else {
             printf("\nOpción invalida.\n");
+            a = 1;
         }
     }
 
@@ -58,8 +58,7 @@ int main(){
 
     else{
         strcpy(mov,"Juegos/");
-        chdir(mov);
-        
+        chdir(mov); 
     }
     
 

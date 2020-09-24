@@ -1,0 +1,1963 @@
+==9186== Memcheck, a memory error detector
+==9186== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==9186== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==9186== Command: ./main
+==9186== Parent PID: 7080
+==9186== 
+--9186-- 
+--9186-- Valgrind options:
+--9186--    --leak-check=full
+--9186--    --show-leak-kinds=all
+--9186--    --track-origins=yes
+--9186--    --verbose
+--9186--    --log-file=valgrind-out.txt
+--9186-- Contents of /proc/version:
+--9186--   Linux version 5.3.0-42-generic (buildd@lcy01-amd64-019) (gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1)) #34~18.04.1-Ubuntu SMP Fri Feb 28 13:42:26 UTC 2020
+--9186-- 
+--9186-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--9186-- Page sizes: currently 4096, max supported 4096
+--9186-- Valgrind library directory: /usr/lib/valgrind
+--9186-- Reading syms from /home/isi/Desktop/Tareas SO/SO_1/main
+--9186-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--9186--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--9186--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
+--9186--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--9186--   .. CRC is valid
+--9186-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--9186--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--9186--   .. CRC mismatch (computed 41ddb025 wanted 9972f546)
+--9186--    object doesn't have a symbol table
+--9186--    object doesn't have a dynamic symbol table
+--9186-- Scheduler: using generic scheduler lock implementation.
+--9186-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==9186== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-9186-by-isi-on-???
+==9186== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-9186-by-isi-on-???
+==9186== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-9186-by-isi-on-???
+==9186== 
+==9186== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==9186== don't want to do, unless you know exactly what you're doing,
+==9186== or are doing some strange experiment):
+==9186==   /usr/lib/valgrind/../../bin/vgdb --pid=9186 ...command...
+==9186== 
+==9186== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==9186==   /path/to/gdb ./main
+==9186== and then give GDB the following command
+==9186==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=9186
+==9186== --pid is optional if only one valgrind process is running
+==9186== 
+--9186-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
+--9186-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
+--9186-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--9186--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--9186--   .. CRC mismatch (computed 50df1b30 wanted 4800a4cf)
+--9186--    object doesn't have a symbol table
+--9186-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--9186--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--9186--   .. CRC mismatch (computed f893b962 wanted 95ee359e)
+--9186--    object doesn't have a symbol table
+==9186== WARNING: new redirection conflicts with existing -- ignoring it
+--9186--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x580608c1 ???
+--9186--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
+--9186-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
+--9186-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
+--9186-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--9186--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--9186--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
+--9186--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--9186--   .. CRC is valid
+--9186-- REDIR: 0x4edac70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edaf50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edc7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edade0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edac10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edad40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ef80f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edafa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edb0e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed97c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ed9c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ee46c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edaff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edabe0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4ef8eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4eda050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edaf20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edaef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edc7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4edb040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--9186-- REDIR: 0x4fca3c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
+--9186-- REDIR: 0x4fca1d0 (libc.so.6:__strchrnul_avx2) redirected to 0x4c37020 (strchrnul)
+--9186-- REDIR: 0x4ed3070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
+--9186-- REDIR: 0x4fca590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
+--9186-- REDIR: 0x4fcaab0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4c37130 (mempcpy)
+--9186-- REDIR: 0x4eed9e0 (libc.so.6:__strcat_ssse3) redirected to 0x4c32990 (strcat)
+--9186-- REDIR: 0x4eda590 (libc.so.6:__GI_strstr) redirected to 0x4c37760 (__strstr_sse2)
+--9186-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
+--9186-- REDIR: 0x4fcaad0 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4c366e0 (memmove)
+--9186-- REDIR: 0x4fa5d60 (libc.so.6:__strcmp_ssse3) redirected to 0x4c33da0 (strcmp)
+--9186-- REDIR: 0x4fb7950 (libc.so.6:__strcpy_ssse3) redirected to 0x4c32dd0 (strcpy)
+--9186-- REDIR: 0x4fc6420 (libc.so.6:__memchr_avx2) redirected to 0x4c33f80 (memchr)
+--9186-- REDIR: 0x4fc6300 (libc.so.6:__strspn_sse42) redirected to 0x4c37990 (strspn)
+--9186-- REDIR: 0x4fc6070 (libc.so.6:__strcspn_sse42) redirected to 0x4c378d0 (strcspn)
+==9186== Invalid read of size 8
+==9186==    at 0x10A1F9: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A1FC: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A22E: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A239: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A241: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A249: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A250: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A25C: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A264: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 4
+==9186==    at 0x10A26E: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A1E7: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A1EA: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A1F2: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5B7: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A3DE: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A3FB: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A403: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A431: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A434: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A413: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A416: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A41E: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A28E: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2A9: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A2B1: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2C1: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2C4: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A2CC: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2DF: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2EA: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A348: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A35B: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A366: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A3A4: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 4
+==9186==    at 0x10A3AE: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2E2: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A34B: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A35E: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A36D: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A2F7: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A30A: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A31A: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A31D: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A329: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A330: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A02A: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 4
+==9186==    at 0x10A100: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A10B: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A113: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A11B: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A123: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A12A: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid write of size 8
+==9186==    at 0x10A12E: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid read of size 8
+==9186==    at 0x10A00B: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid free() / delete / delete[] / realloc()
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9430 is 0 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== Invalid free() / delete / delete[] / realloc()
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A5E6: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== HEAP SUMMARY:
+==9186==     in use at exit: 0 bytes in 0 blocks
+==9186==   total heap usage: 295 allocs, 299 frees, 746,016 bytes allocated
+==9186== 
+==9186== All heap blocks were freed -- no leaks are possible
+==9186== 
+==9186== ERROR SUMMARY: 441 errors from 56 contexts (suppressed: 0 from 0)
+==9186== 
+==9186== 2 errors in context 1 of 56:
+==9186== Invalid free() / delete / delete[] / realloc()
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A5E6: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 2 of 56:
+==9186== Invalid free() / delete / delete[] / realloc()
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9430 is 0 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 3 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A00B: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 4 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A12E: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 5 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A12A: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 6 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A123: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 7 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A11B: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 8 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A113: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 9 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A10B: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 10 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A100: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 11 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A02A: clear (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A006: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5DA: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 12 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A31D: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 13 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A1EA: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 14 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A250: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 15 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A241: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 2 errors in context 16 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A239: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 17 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A330: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 18 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A329: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 19 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A31A: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 20 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A30A: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 21 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2F7: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 22 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A36D: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 23 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A35E: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 3 errors in context 24 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A34B: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 4 errors in context 25 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2C4: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 4 errors in context 26 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A1FC: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 5 errors in context 27 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2E2: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 5 errors in context 28 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A2CC: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 5 errors in context 29 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2C1: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 6 errors in context 30 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A366: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 6 errors in context 31 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A35B: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 6 errors in context 32 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A348: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 7 errors in context 33 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A1F2: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 7 errors in context 34 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A1E7: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 35 of 56:
+==9186== Invalid write of size 4
+==9186==    at 0x10A3AE: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 36 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A3A4: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 37 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2EA: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 38 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2DF: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 39 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A2B1: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 40 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A2A9: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 41 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A28E: remove_ (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5A3: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 42 of 56:
+==9186== Invalid write of size 4
+==9186==    at 0x10A26E: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 43 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A264: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 44 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A25C: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e0 is 16 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 45 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A249: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 9 errors in context 46 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A22E: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 13 errors in context 47 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A434: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 13 errors in context 48 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A416: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a9438 is 8 bytes inside a block of size 16 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A016: destroy (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109C33: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109FA7: init (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A462: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 16 errors in context 49 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A1F9: append (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109AE5: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 20 errors in context 50 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A41E: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 20 errors in context 51 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A413: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 26 errors in context 52 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A431: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 26 errors in context 53 of 56:
+==9186== Invalid write of size 8
+==9186==    at 0x10A403: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d0 is 0 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 26 errors in context 54 of 56:
+==9186== Invalid read of size 8
+==9186==    at 0x10A3FB: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93d8 is 8 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 26 errors in context 55 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A3DE: at (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A48B: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== 
+==9186== 36 errors in context 56 of 56:
+==9186== Invalid read of size 4
+==9186==    at 0x10A3BF: length (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x10A5B7: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Address 0x52a93e8 is 24 bytes inside a block of size 32 free'd
+==9186==    at 0x4C30D3B: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x109C42: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==  Block was alloc'd at
+==9186==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9186==    by 0x10A452: sort (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109B18: Explorar (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186==    by 0x109F5D: main (in /home/isi/Desktop/Tareas SO/SO_1/main)
+==9186== 
+==9186== ERROR SUMMARY: 441 errors from 56 contexts (suppressed: 0 from 0)
