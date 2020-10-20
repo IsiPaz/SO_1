@@ -16,5 +16,6 @@ Isidora Ubilla Zavala  201804581-0
 
 ## Makefile
 
-- Para crear un ejecutable, se debe llamar por consola a **make all**, aunque es la primera linea por lo que basta con llamar a **make** por consola.
+- Para crear un ejecutable, se debe llamar por consola a **make all**, luego **./a.out** .
 - Para limpiar los archivos .o se debe llamar por consola a **make clean**.
+
